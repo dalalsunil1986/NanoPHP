@@ -8,7 +8,7 @@ function pre_system_hook() {
 }
 
 function pre_controller_hook() {
-    $router = Application::getRouter();
+    $router = Router::getInstance();
 
     if ($router->getActionName() === 'hookDemo') {
         echo "<p><code>pre_controller</code> hook executed!<br/>
@@ -20,7 +20,7 @@ function pre_controller_hook() {
 }
 
 function post_controller_constructor_hook($dummyParameter) {
-    if (Application::getRouter()->getActionName() === 'hookDemo') {
+    if (Router::getInstance()->getActionName() === 'hookDemo') {
         echo "<p><code>post_controller_constructor</code> hook executed!<br/>
                  \$dummyParameter = $dummyParameter.
               </p>";
@@ -28,7 +28,7 @@ function post_controller_constructor_hook($dummyParameter) {
 }
 
 function post_controller_hook() {
-    $router = Application::getRouter();
+    $router = Router::getInstance();
 
     if ($router->getActionName() === 'hookDemo') {
         echo "<p><code>post_controller</code> hook executed!<br/>
@@ -39,7 +39,7 @@ function post_controller_hook() {
 }
 
 function post_system_hook() {
-    if (Application::getRouter()->getActionName() === 'hookDemo') {
+    if (Router::getInstance()->getActionName() === 'hookDemo') {
         echo "<p><code>post_system</code> hook executed!</p>";
     }
 }

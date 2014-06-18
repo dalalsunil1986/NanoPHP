@@ -18,6 +18,11 @@ class Router {
     const URL_SEGMENT_PATTERN = '/^[a-zA-Z0-9_]*$/';
 
     /**
+     * @var Router
+     */
+    private static $routerInstance;
+
+    /**
      * @var string
      */
     private $controllerName;
@@ -87,6 +92,20 @@ class Router {
      */
     public function getModelMap() {
         return $this->modelMap;
+    }
+
+    /**
+     * @return Router
+     */
+    public static function getInstance() {
+        if (self::$routerInstance == null) {
+            self::$routerInstance = new Router();
+        }
+
+        return self::$routerInstance;
+    }
+
+    private function __construct() {
     }
 
     /**

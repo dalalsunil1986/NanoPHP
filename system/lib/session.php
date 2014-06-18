@@ -3,8 +3,6 @@
 /**
  * A wrapper for session operations. Also Supports Flash data (i.e., data that persists only for the next HTTP request;
  * for example, displaying a success or error message as a result of an operation).
- *
- * Note: You must use <code>Application::getSession()</code> to access the session object.
  */
 class Session {
 
@@ -13,12 +11,18 @@ class Session {
     private static $FLASH_DATA_MARK_NEW = ":new:";
     private static $FLASH_DATA_MARK_OLD = ":old:";
 
-    /** @noinspection PhpUnusedPrivateMethodInspection */
-    private static function getInstance() {
-        $instance = new Session();
-        $instance->setup();
+    /**
+     * @var Session
+     */
+    private static $sessionInstance;
 
-        return $instance;
+    public static function getInstance() {
+        if (self::$sessionInstance == null) {
+            self::$sessionInstance = new Session();
+            self::$sessionInstance->setup();
+        }
+
+        return self::$sessionInstance;
     }
 
     private function __construct() {

@@ -46,7 +46,7 @@ class Home {
      * the html right from the controller action), simply don't return anything.
      */
     public function sessionDemo() {
-        $session = Application::getSession();
+        $session = Session::getInstance();
         $success = assert(isset($session));
         echo $success ? '<code>Application::getSession()</code> working!<br/><br/>' : '';
 

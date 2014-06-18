@@ -3,7 +3,7 @@
 class Authentication {
 
     public function redirectToLoginIfNotAuthenticated() {
-        $router = Application::getRouter();
+        $router = Router::getInstance();
 
         if ($router->getControllerName() === 'home' && $router->getActionName() === 'protectedPage') {
             header('location: ' . Application::$basePath . '/login');
